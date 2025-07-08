@@ -185,6 +185,9 @@ function extract_samplefs()
 	pushd "${tmpdir}" > /dev/null 2>&1
 	tar xpf "${source_samplefs}" --numeric-owner
 	popd > /dev/null
+	ssldir=$(pwd)
+	echo "$ssldir"
+	cp $ssldir/libssl1arm64.deb $tmpdir/tmp
 }
 
 function save_samplefs()

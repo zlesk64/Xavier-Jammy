@@ -77,6 +77,9 @@ function create_samplefs()
 	cp "${host_qemu_path}" "${target_qemu_path}"
 	chmod 755 "${target_qemu_path}"
 
+	#Copy libssl1.1 deb pkg to rootfs to it can be installed later in the script
+	#cp ../libssl1arm64.deb ./tmp/
+
 	mount /sys ./sys -o bind
 	mount /proc ./proc -o bind
 	mount /dev ./dev -o bind
@@ -98,6 +101,9 @@ function create_samplefs()
 	else
 		echo "ERROR: Package list is empty"
 	fi
+
+	#install libssl1.1 manually, dependency for nvidia-tools
+	sudo LC_ALL=C chroot . dpkg -i /tmp/libssl1arm64.deb
 
 	sudo LC_ALL=C chroot . sync
 	sudo LC_ALL=C chroot . apt-get clean
