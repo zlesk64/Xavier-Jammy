@@ -12,7 +12,13 @@ printf "\n%s\n" "Options are: basic, desktop and minimal"
 read systemver
 printf "\n%s\n" "Version chosen is: $systemver"
 
-sudo bash ./samplefs/nv_build_samplefs.sh --abi aarch64 --distro ubuntu --flavor $systemver --version jammy
+
+pushd ./samplefs > /dev/null 2>&1 #change to working directory of nvidia scripts
+currentdir=$(pwd) #sanity check
+echo "$currentdir"
+
+#run nvidia script with selected options
+sudo bash nv_build_samplefs.sh --abi aarch64 --distro ubuntu --flavor $systemver --version jammy
 
 sleep 5
 
@@ -21,5 +27,7 @@ printf "\n%s\n" "nv_build_samplefs script finished, would you like to extract th
 read -p "(Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 printf "\n%s\n" "Enter path to your Linux_for_Tegra/rootfs/ directory"
 read pathtol4t
-sudo tar xpvf ./samplefs/sample_fs.tbz2 -C $pathtol4t  
+sudo tar xpvf sample_fs.tbz2 -C $pathtol4t  
+
+popd > /dev/null
 

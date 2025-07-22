@@ -105,6 +105,10 @@ function create_samplefs()
 	#install libssl1.1 manually, dependency for nvidia-tools
 	sudo LC_ALL=C chroot . dpkg -i /tmp/libssl1arm64.deb
 
+        #remove libvulkan-dev, libvulkan1 and vulkan-tools. Versions that are included with ubuntu conflict witht the nvidia ones installed
+        #later during the apply-binaries stage.
+        sudo LC_ALL=C chroot . apt-get -y remove libvulkan-dev libvulkan1 vulkan-tools
+
 	sudo LC_ALL=C chroot . sync
 	sudo LC_ALL=C chroot . apt-get clean
 	sudo LC_ALL=C chroot . sync

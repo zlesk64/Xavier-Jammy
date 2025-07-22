@@ -13,6 +13,7 @@ android-sdk-platform-tools-common
 apport
 apport-symptoms
 apt
+apt-utils
 base-files
 base-passwd
 bash
@@ -44,6 +45,7 @@ dash
 dbus
 dbus-user-session
 dbus-x11
+dialog
 dconf-gsettings-backend
 dconf-service
 debconf

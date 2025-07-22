@@ -63,7 +63,7 @@ function usage()
 	echo "Generated samplefs tarball will be named 'sample_fs.tbz2' and put under the path"
 	echo "executes this script."
 	echo ""
-	echo "Note: ${script_name} can only run on Ubuntu 22.04."
+	echo "Note: ${script_name} can only run on Ubuntu 24.04."
 	exit 1
 }
 
@@ -96,8 +96,8 @@ trap cleanup EXIT
 function check_pre_req()
 {
 	ubuntu_codename="$(cat /etc/lsb-release | grep CODENAME)"
-	if [[ ! "${ubuntu_codename}" =~ "noble" ]]; then
-		echo "ERROR: This script can be only run on Ubuntu 22.04" > /dev/stderr
+	if [[ ! "${ubuntu_codename}" =~ "xia" ]]; then
+		echo "ERROR: This script can be only run on Ubuntu 24.04" > /dev/stderr
 		usage
 		exit 1
 	fi
